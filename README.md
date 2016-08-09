@@ -204,8 +204,8 @@ The `params` object will look like:
 
 ``` json
 {
-  'hash': [
-    '1234'
-  ]
+    'hash': [
+        '1234'
+    ]
 }
 ```
