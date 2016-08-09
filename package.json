@@ -1,0 +1,44 @@
+{
+  "name": "moostaka",
+  "version": "1.0.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrvautin/moostaka"
+  },
+  "bugs": {
+    "url": "https://github.com/mrvautin/moostaka/issues"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "minify": "uglifyjs src/moostaka.js -o dist/moostaka.min.js"
+  },
+  "dependencies": {
+    "express": "~4.9.0"
+  },
+  "keywords": [
+    "SPA",
+    "markdown",
+    "framework",
+    "single page application",
+    "documentation",
+    "Mustache",
+    "jquery",
+    "plugin",
+    "template",
+    "view",
+    "small",
+    "simple"
+  ],
+  "description": "A light weight and easy to use Single Page Application (SPA) framework based on views in Mustache format",
+  "main": "app.js",
+  "author": "Mark Moffat",
+  "license": "MIT",
+  "homepage": "http://moostaka.mrvautin.com",
+  "devDependencies": {
+    "eslint": "^3.2.0",
+    "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-standard": "^2.0.0"
+  }
+}
