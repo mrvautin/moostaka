@@ -202,7 +202,7 @@ This will match route: `http://localhost:8080/#/1234` (for example) and return t
 
 The `params` object will look like:
 
-``` json
+``` javascript
 {
     'hash': [
         '1234'
