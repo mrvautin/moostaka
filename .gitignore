@@ -3,3 +3,4 @@ public/
 index.html
 app.js
 .eslintrc.json
+concat.js
