@@ -1,6 +1,6 @@
 node_modules/
-public/
-index.html
-app.js
+/public
+/index.html
+/app.js
 .eslintrc.json
 concat.js
