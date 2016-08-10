@@ -107,32 +107,46 @@ function loadScript(url, callback){
     });
 }
 
-Moostaka.prototype.render = function(element, view, params, callback){
+Moostaka.prototype.render = function(element, view, params, options, callback){
+    if(!options){ options = {}; };
+    if(!params){ params = {}; };
+    if(options && typeof options.tags === 'undefined'){ Mustache.tags = [ '{{', '}}' ]; }
+    if(options && typeof options.append === 'undefined'){ options.append = false; };
+
     $.ajax({
         url: this.viewLocation + '/' + view.replace('.mst', '') + '.mst',
         dataType: 'text'
     }).done(function (template){
-        $(element).empty();
-        $(element).html(window.Mustache.to_html($(template).html(), params));
+        if(options.append === true){
+            $(element).append(window.Mustache.to_html($(template).html(), params));
+        }else{
+            $(element).empty();
+            $(element).html(window.Mustache.to_html($(template).html(), params));
+        }
         if(typeof callback !== 'undefined'){
             callback();
         };
     });
 };
 
-Moostaka.prototype.getHtml = function(view, params, markdown, callback){
+Moostaka.prototype.getHtml = function(view, params, options, callback){
+    if(!options){ options = {}; };
+    if(!params){ params = {}; };
+    if(typeof options.tags === 'undefined'){ Mustache.tags = [ '{{', '}}' ]; }else{ Mustache.tags = options.tags; }
+    if(typeof options.markdown === 'undefined'){ options.markdown = false; }
+
     $.ajax({
         url: this.viewLocation + '/' + view.replace('.mst', '') + '.mst',
         dataType: 'text'
     }).done(function (template){
-        if(typeof markdown !== 'undefined' && markdown === true){
+        if(options.markdown === true){
             loadScript('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.0/markdown-it.min.js', function(){
                 var md = window.markdownit();
                 var html = '<script id="template" type="text/template">' + md.render(template) + '</script>';
-                callback(window.Mustache.to_html($(html).html(), params));
+                callback(window.Mustache.render($(html).html(), params));
             });
         }else{
-            callback(window.Mustache.to_html($(template).html(), params));
+            callback(window.Mustache.render($(template).html(), params));
         }
     });
 };

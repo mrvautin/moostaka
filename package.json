@@ -1,6 +1,6 @@
 {
   "name": "moostaka",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "repository": {
     "type": "git",
@@ -11,13 +11,15 @@
   },
   "scripts": {
     "start": "node app.js",
-    "minify": "uglifyjs src/moostaka.js -o dist/moostaka.min.js"
+    "minify": "uglifyjs src/moostaka.js -o dist/moostaka.min.js",
+    "readme": "node src/concat.js"
   },
   "dependencies": {
     "express": "~4.9.0"
   },
   "keywords": [
     "SPA",
+    "spa",
     "markdown",
     "framework",
     "single page application",
@@ -36,6 +38,7 @@
   "license": "MIT",
   "homepage": "http://moostaka.mrvautin.com",
   "devDependencies": {
+    "concat-files": "^0.1.0",
     "eslint": "^3.2.0",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-promise": "^2.0.0",

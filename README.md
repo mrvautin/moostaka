@@ -122,7 +122,8 @@ The function takes the following parameters:
 
 1.  The target element within `index.html` which the view HTML will be appended to using jQuery selectors
 2.  The name of the view file (with or without extension)
-3.  Parameters or data in the form of a Javascript Object which the view will render
+3.  Parameters or data in the form of a Javascript Object which the view will render (optional)
+4.  Render options. See options
 
 Without a callback:
 
@@ -138,6 +139,20 @@ moostaka.render('#main-body', 'home', params, function(){
 });
 ```
 
+With options:
+
+``` javascript
+moostaka.render('#main-body', 'home', params, {append: true, tags: [ '<%', '%>' ]}, function(){
+   // The rendering is complete and HTML within '#main-body' can be accessed
+});
+```
+
+**Options**
+
+`append` : Whether to replace or append to the element. Defaults to `false`
+
+`tags` : If you are wanting to change the Mustache tags for rendering. Defaults to `{{}}`. See [here](https://github.com/janl/mustache.js#custom-delimiters).
+
 ### Get HTML
 
 In the instance you simply want the HTML and not wanting to automatically render that to a DIV you can use the `getHtml()` funtion.
@@ -147,13 +162,27 @@ The function takes the following parameters:
 
 1.  The name of the view file (with or without extension)
 2.  Parameters or data in the form of a Javascript Object which the view will render
-3.  A boolean value if the data within the template is in Markdown format. Eg: True = convert Markdown to HTML
+3.  Render options. See options
 
 ``` javascript
-moostaka.getHtml('markdown', params, true, function(html){
+moostaka.getHtml('markdown', params, function(html){
     // Do things with the returned html
 });
 ```
+
+With options:
+
+``` javascript
+moostaka.getHtml('markdown', params, {markdown: true, tags: [ '<%', '%>' ]}, function(html){
+    // Do things with the returned html
+});
+```
+
+**Options**
+
+`markdown` : Whether the view is in Markdown format. Defaults to `false`
+
+`tags` : If you are wanting to change the Mustache tags for rendering. Defaults to `{{}}`. See [here](https://github.com/janl/mustache.js#custom-delimiters).
 
 ## Advanced routing
 
@@ -209,3 +238,18 @@ The `params` object will look like:
     ]
 }
 ```
+
+## What is this Mustache stuff anyway?
+
+Mustache is a simple templating syntax which is used in over 40 different languages. The reach across many different languages means
+there is a wealth of knowledge and examples across the interwebs. 
+
+The main principal of Mustache in our case is the simplicity of using familiar HTML syntax but adding in the double `{{}}` brackets 
+to support variables which are to be displayed. 
+
+A simple view (or template) to display a persons name is below. Notice the double `{{}}` surrounding the variable we would like to display:
+
+``` html
+<div>
+    Hi my name is <strong>{{personsName}}</strong>
+</div>
