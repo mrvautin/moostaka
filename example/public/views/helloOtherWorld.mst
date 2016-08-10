@@ -1,0 +1,19 @@
+<script id="template" type="text/template">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <div class="text-center">
+                    <h1>Hello Other World!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h2>This contents of this view is in /view/helloOtherWorld.mst</h2>
+            <h2>Go ahead, change some content and refresh this page.</h2>
+            <hr>
+            <h4>Oh, the menu up top is being rendered from a view also, suss out /view/menu.mst</h4>
+        </div>
+    </div>
+</script>

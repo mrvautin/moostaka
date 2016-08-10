@@ -1,0 +1,7 @@
+<script id="template" type="text/template">
+    <ul class="nav navbar-nav">
+        <li><a href="/#/">Hello World</a></li>
+        <li><a href="/#/helloOtherWorld">Hello Other World</a></li>
+        <li><a href="/#/hello/Steve">Hello Steve</a></li>
+    </ul>
+</script>

@@ -1,0 +1,15 @@
+{
+  "name": "moostaka-example",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~4.9.0"
+  },
+  "main": "app.js",
+  "author": "Mark Moffat",
+  "license": "MIT",
+  "homepage": "http://moostaka.mrvautin.com"
+}

@@ -2,7 +2,11 @@
 
 [moostaka](https://github.com/mrvautin/moostaka) depends on jQuery and Moustache. They need to be added to your `<head>` tag above moostaka.js
 
-A demo and examples can be found: [http://moostaka.mrvautin.com](http://moostaka.mrvautin.com)
+A demo and examples can be found: [http://moostaka.mrvautin.com](http://moostaka.mrvautin.com).
+
+#### Example app
+
+Check out the example app in the /example folder. 
 
 Example:
 
@@ -163,9 +167,9 @@ The function takes the following parameters:
 1.  The name of the view file (with or without extension)
 2.  Parameters or data in the form of a Javascript Object which the view will render
 3.  Render options. See options
-
+`
 ``` javascript
-moostaka.getHtml('markdown', params, function(html){
+moostaka.getHtml('html', params, function(html){
     // Do things with the returned html
 });
 ```
