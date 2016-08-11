@@ -67,14 +67,14 @@ moostaka allows a few options:
 
 ``` javascript
 var moostaka = new Moostaka({
-    defaultRoute: '#/contact',
+    defaultRoute: '/contact',
     viewLocation: '/my_view_folder'
 });
 ```
 
 **Default options**
 
-`defaultRoute`: '#/'
+`defaultRoute`: '/'
 
 `viewLocation`: '/views''
 
@@ -83,7 +83,7 @@ var moostaka = new Moostaka({
 Setting up a `home` route is as simple as:
 
 ``` javascript
-moostaka.route('#/', function(params){
+moostaka.route('/', function(params){
   // do stuff
 });
 ```
@@ -91,7 +91,7 @@ moostaka.route('#/', function(params){
 And a `contact` route like so:
 
 ``` javascript
-moostaka.route('#/contact', function(params){
+moostaka.route('/contact', function(params){
   // do stuff
 });
 ```
@@ -192,10 +192,10 @@ moostaka.getHtml('markdown', params, {markdown: true, tags: [ '<%', '%>' ]}, fun
 
 ### String matching
 
-Routing can be as simple or as complex as you like. You can collect optional parameters, use wildcards and even regex to match your routes. Eg: To match: `http://localhost:8080/#/profile` you would do:
+Routing can be as simple or as complex as you like. You can collect optional parameters, use wildcards and even regex to match your routes. Eg: To match: `http://localhost:8080/profile` you would do:
 
 ``` javascript
-moostaka.route('#/profile', function(params){
+moostaka.route('/profile', function(params){
   // do stuff
 });
 ```
@@ -205,12 +205,12 @@ moostaka.route('#/profile', function(params){
 You are able to specify optional parameters by doing:
 
 ``` javascript
-moostaka.route('#/profile/:name', function(params){
+moostaka.route('/profile/:name', function(params){
   // do stuff
 });
 ```
 
-This will match route: `http://localhost:8080/#/profile/JohnSmith` (for example) and return the `JohnSmith` value back in the `params` as a named object.
+This will match route: `http://localhost:8080/profile/JohnSmith` (for example) and return the `JohnSmith` value back in the `params` as a named object.
 
 The `params` object will look like:
 
@@ -231,7 +231,7 @@ moostaka.route(/^\d+$/, function(params){
 });
 ```
 
-This will match route: `http://localhost:8080/#/1234` (for example) and return the `1234` value back in the `params` object as an array.
+This will match route: `http://localhost:8080/1234` (for example) and return the `1234` value back in the `params` object as an array.
 
 The `params` object will look like:
 
