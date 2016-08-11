@@ -11,9 +11,9 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 text-center">
             <h2>This contents of this view is in /view/hello.mst</h2>
-            <h4>Notice the URL is: <a href="http://localhost:7979/#/hello/Steve">http://localhost:7979/#/hello/Steve</a>?</h4>
+            <h4>Notice the URL is: <a href="http://localhost:7979/hello/Steve">http://localhost:7979/hello/Steve</a>?</h4>
             <hr>
-            <h4>Change "Steve" to another name in your browser or click <a href="http://localhost:7979/#/hello/Peter">here</a> to say hi to "Peter".</h4>
+            <h4>Change "Steve" to another name in your browser or click <a href="http://localhost:7979/hello/Peter">here</a> to say hi to "Peter".</h4>
             <hr>
             <h4>Notice there is no refresh in the browser!? What!? How sick is that!</h4>
         </div>

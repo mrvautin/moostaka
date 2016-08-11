@@ -14,15 +14,15 @@
             $(document).ready(function(){
                 var moostaka = new Moostaka();
 
-                moostaka.route('#/', function(params){
+                moostaka.route('/', function(params){
                     moostaka.render('#main-body', 'helloWorld', params);
                 });
 
-                moostaka.route('#/helloOtherWorld', function(params){
+                moostaka.route('/helloOtherWorld', function(params){
                     moostaka.render('#main-body', 'helloOtherWorld', params);
                 });
 
-                moostaka.route('#/hello/:name', function(params){
+                moostaka.route('/hello/:name', function(params){
                     moostaka.render('#main-body', 'hello', params);
                 });
 
@@ -41,7 +41,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#/">
+                        <a class="navbar-brand" href="/">
                             <span class="navbar-heading">moostaka example</span>
                         </a>
                     </div>
