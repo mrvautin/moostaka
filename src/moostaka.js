@@ -2,12 +2,12 @@ var Moostaka = function(opts){
     this.routes = [];
 
     // define the defaults
-    this.defaultRoute = '#/';
+    this.defaultRoute = '/';
     this.viewLocation = '/views';
 
     // redirect to default route if none defined
-    if(location.hash === ''){
-        window.location = this.defaultRoute;
+    if(location.pathname === ''){
+        history.pushState('data', this.defaultRoute, this.defaultRoute);
     }
 
     // override the defaults
@@ -16,32 +16,47 @@ var Moostaka = function(opts){
         this.viewLocation = typeof opts.viewLocation !== 'undefined' ? opts.viewLocation : this.viewLocation;
     }
 
-    // hook window change events
     var moostaka = this;
-    window.onhashchange = function(){
-        moostaka.navigate(location.hash);
+
+    // hook up events
+    $(document).on('click', 'a', function(e){
+        e.preventDefault();
+        if(e.target.href){
+            var url = e.target.href.replace('http://', '').replace('https://', '').replace(e.target.host, '');
+            history.pushState('data', e.target.textContent, url);
+            moostaka.navigate(url);
+        }else{
+            // go to default route
+            history.pushState('data', 'home', this.defaultRoute);
+            moostaka.navigate(this.defaultRoute);
+        }
+    });
+
+    // pop state
+    window.onpopstate = function(e){
+        moostaka.navigate(location.pathname);
     };
 
     // hook onload event
     window.onload = function(){
-        moostaka.navigate(location.hash);
+        moostaka.navigate(location.pathname);
     };
 };
 
-Moostaka.prototype.navigate = function(hash){
-    if(location.hash !== hash){
-        // do we need to skip the next event?
-        location.hash = hash;
-    }
-
+Moostaka.prototype.navigate = function(pathname){
     if(this.onnavigate){
-        this.onnavigate(hash);
+        this.onnavigate(pathname);
     }
 
+    // if no path, go to default
+    if(!pathname || pathname === '/'){
+        pathname = this.defaultRoute;
+    }
+    
     var routeMatch = false;
     for(var i = 0; i < this.routes.length; i++){
         var params = {};
-        var hashParts = hash.split('/');
+        var hashParts = pathname.split('/');
 
         if(typeof this.routes[i].pattern === 'string'){
             var routeParts = this.routes[i].pattern.split('/');
@@ -77,8 +92,8 @@ Moostaka.prototype.navigate = function(hash){
                 return;
             }
         }else{
-            if(hash.replace('#/', '').match(this.routes[i].pattern)){
-                this.routes[i].handler({'hash': hash.replace('#/', '').split('/')});
+            if(pathname.substring(1).match(this.routes[i].pattern)){
+                this.routes[i].handler({'hash': pathname.substring(1).split('/')});
                 return;
             }
         }
@@ -86,7 +101,7 @@ Moostaka.prototype.navigate = function(hash){
 
     // no routes were matched. Redirect to a server side 404 for best SEO
     if(routeMatch === false){
-        window.location = this.defaultRoute;
+        history.pushState('data', 'home', this.defaultRoute);
     }
 };
 
