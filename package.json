@@ -15,7 +15,7 @@
     "readme": "node src/concat.js"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "mustache": "^3.0.1"
   },
   "keywords": [
     "SPA",
@@ -37,6 +37,7 @@
   "license": "MIT",
   "homepage": "http://moostaka.mrvautin.com",
   "devDependencies": {
+    "express": "^4.16.4",
     "concat-files": "^0.1.0",
     "eslint": "^3.2.0",
     "eslint-config-standard": "^5.3.5",
