@@ -11,18 +11,18 @@
         <script src='https://cdn.rawgit.com/mrvautin/moostaka/master/dist/moostaka.min.js'></script>
         <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
         <script>
-            $(document).ready(function(){
+            document.addEventListener("DOMContentLoaded", () => {
                 var moostaka = new Moostaka();
 
-                moostaka.route('/', function(params){
+                moostaka.route('/', (params) => {
                     moostaka.render('#main-body', 'helloWorld', params);
                 });
 
-                moostaka.route('/helloOtherWorld', function(params){
+                moostaka.route('/helloOtherWorld', (params) => {
                     moostaka.render('#main-body', 'helloOtherWorld', params);
                 });
 
-                moostaka.route('/hello/:name', function(params){
+                moostaka.route('/hello/:name', (params) => {
                     moostaka.render('#main-body', 'hello', params);
                 });
 

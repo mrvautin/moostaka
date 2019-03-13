@@ -10,12 +10,12 @@
     "url": "https://github.com/mrvautin/moostaka/issues"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node example/app.js",
     "minify": "uglifyjs src/moostaka.js -o dist/moostaka.min.js",
     "readme": "node src/concat.js"
   },
   "dependencies": {
-    "express": "~4.15.3"
+    "express": "^4.16.4"
   },
   "keywords": [
     "SPA",
@@ -25,7 +25,6 @@
     "single page application",
     "documentation",
     "Mustache",
-    "jquery",
     "plugin",
     "template",
     "view",
