@@ -75,56 +75,49 @@ class Moostaka {
             pathname = this.defaultRoute;
         }
 
-        let routeMatch = false;
+        let hashParts = pathname.split('/');
+        let params = {};
         for(let i = 0, len = this.routes.length; i < len; i++) {
-            let params = {};
-            let hashParts = pathname.split('/');
-
             if(typeof this.routes[i].pattern === 'string') {
                 let routeParts = this.routes[i].pattern.split('/');
                 let thisRouteMatch = true;
 
-                for(let x = 0; x < routeParts.length; x++) {
-                    // A wildcard is found, lets break and return what we have already
-                    if(routeParts[x] === '*') {
-                        break;
-                    }
-
-                    // check if segment length differs for strict matching
-                    if(routeParts.length !== hashParts.length) {
-                        thisRouteMatch = false;
-                    }
-
-                    // if not optional params we check it
-                    if(routeParts[x].substring(0, 1) !== ':') {
-                        if(lowerCase(routeParts[x]) !== lowerCase(hashParts[x])) {
-                            thisRouteMatch = false;
+                // if segment count is not equal the pattern will not match
+                if(routeParts.length !== hashParts.length) {
+                    thisRouteMatch = false;
+                } else {
+                    for(let x = 0; x < routeParts.length; x++) {
+                        // A wildcard is found, lets break and return what we have already
+                        if(routeParts[x] === '*') {
+                            break;
                         }
-                    } else {
-                        // this is an optional param that the user will want
-                        let partName = routeParts[x].substring(1);
-                        params[partName] = hashParts[x];
+    
+                        // if not optional params we check it
+                        if(routeParts[x].substring(0, 1) !== ':') {
+                            if(lowerCase(routeParts[x]) !== lowerCase(hashParts[x])) {
+                                thisRouteMatch = false;
+                            }
+                        } else {
+                            // this is an optional param that the user will want
+                            let partName = routeParts[x].substring(1);
+                            params[partName] = hashParts[x];
+                        }
                     }
                 }
 
                 // if route is matched
                 if(thisRouteMatch === true) {
-                    routeMatch = true;
-                    this.routes[i].handler(params);
-                    return;
+                    return this.routes[i].handler(params);
                 }
             } else {
                 if(pathname.substring(1).match(this.routes[i].pattern)) {
-                    this.routes[i].handler({'hash': pathname.substring(1).split('/')});
-                    return;
+                    return this.routes[i].handler({'hash': pathname.substring(1).split('/')});
                 }
             }
         }
 
         // no routes were matched. Redirect to a server side 404 for best SEO
-        if(routeMatch === false) {
-            history.pushState('data', 'home', this.defaultRoute);
-        }
+        history.pushState('data', 'home', this.defaultRoute);
     }
 
     /**
@@ -235,7 +228,17 @@ class Moostaka {
      *      navigates to this route.
      */
     route(pattern, handler) {
+        // should check if pattern is already routed and if so
+        // throw error or overwrite?
         this.routes.push({pattern: pattern, handler: handler});
+    }
+
+    /**
+     * clear all routes currently configured useful if transitioning between 
+     * authenticated and unauthenticated states
+     */
+    flush() {
+        this.routes = [];
     }
 }
 
