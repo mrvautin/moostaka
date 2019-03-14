@@ -128,8 +128,11 @@ class Moostaka {
             }
         }
 
-        // no routes were matched. Redirect to a server side 404 for best SEO
-        history.pushState('data', 'home', this.defaultRoute);
+        // no routes were matched. try defaultRoute if that is not the route being attempted
+        if(this.defaultRoute != pathname) {
+            history.pushState('data', 'home', this.defaultRoute);
+            this.navigate(this.defaultRoute);
+        } // else we should perhaps implement an error route?
     }
 
     /**
