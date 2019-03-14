@@ -35,17 +35,29 @@ class Moostaka {
         // hook up events
         document.addEventListener('click', (event) => {
             if(event.target.matches('a[href], a[href] *')) {
-                event.preventDefault();
-                if(event.target.href){
-                    let url = event.target.href.replace('http://', '').replace('https://', '').replace(event.target.host, '');
-                    history.pushState('data', event.target.textContent, url);
-                    self.navigate(url);
-                } else {
-                    // go to default route
-                    history.pushState('data', 'home', this.defaultRoute);
-                    self.navigate(this.defaultRoute);
+                // walk up the tree until we find the href
+                let element = event.target;
+                while(element instanceof HTMLElement) {
+                    if(element.href) {
+                        if(element.href.startsWith(location.host) || element.href.startsWith(location.protocol + '//' + location.host)) {
+                            // staying in application
+                            event.preventDefault();
+                            let url = element.href.replace('http://', '').replace('https://', '').replace(location.host, '');
+                            let text = document.title;
+                            if(element.title instanceof String && element.title != "") {
+                                text = element.title;
+                            } else if(event.target.title instanceof String && event.target.title != "") {
+                                text = event.target.title;
+                            }
+                            history.pushState({}, text, element.href);
+                            self.navigate(url);
+                        } // else do nothing so browser does the default thing ie browse to new location
+                        return;
+                    } else {
+                        element = element.parentElement;
+                    }
                 }
-            }
+            } // else not a link; ignore
         }, false);
 
         // pop state
