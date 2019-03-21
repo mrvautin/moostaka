@@ -64,11 +64,6 @@ class Moostaka {
         window.onpopstate = (e) => {
             self.navigate(location.pathname);
         };
-
-        // hook onload event
-        window.onload = () => {
-            self.navigate(location.pathname);
-        };
     }
 
     /**
