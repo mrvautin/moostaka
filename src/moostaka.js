@@ -157,10 +157,12 @@ class Moostaka {
         if(!options) {
             options = {};
         }
-        if(options && typeof options.tags === 'undefined') {
+        if(typeof options.tags === 'undefined') {
             Mustache.tags = [ '{{', '}}' ];
+        } else {
+            Mustache.tags = options.tags;
         }
-        if(options && typeof options.append === 'undefined') {
+        if(typeof options.append === 'undefined') {
             options.append = false;
         }
 
@@ -252,6 +254,13 @@ class Moostaka {
     }
 }
 
+/*
+ * In Javascript NULL and undefined values do not respond to .toLowerCase()
+ * in fact calling .toLowerCase() on NULL will raise an error stopping
+ * script execution which is problematic. lowerCase() is therefore a cover
+ * for .toLowerCase() which checks that the value is not falsy before invoking
+ * .toLowerCase()
+ */
 function lowerCase(value){
     if(value){
         return value.toLowerCase();
