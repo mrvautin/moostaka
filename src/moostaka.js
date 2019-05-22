@@ -141,6 +141,9 @@ class Moostaka {
      *      renderer
      * @param {?object} options - a dictionary of options. supported keys:
      *      {array<string>} tags - a list of delimiters for Mustache to use
+     *      {bool} append - if true then new content to the element's contents
+     *            otherwise replace the contents of element with the render
+     *            output. Default: false
      * @param {?function} callback - a callback function to invoke once the
      *      template has been rendered into place
      */
@@ -194,6 +197,9 @@ class Moostaka {
      *      renderer
      * @param {?object} options - a dictionary of options. supported keys:
      *      {array<string>} tags - a list of delimiters for Mustache to use
+     *      {bool} markdown - if true and window.markdownit exists call
+     *          window.markdownit.render() on the template data before
+     *          rendering content with Mustache.
      * @param {function} callback - a callback function to invoke once the
      *      template has been rendered. The string value of the rendered
      *      template will be passed to the function as its first and only
