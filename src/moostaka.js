@@ -105,9 +105,12 @@ class Moostaka {
                                 thisRouteMatch = false;
                             }
                         } else {
-                            // this is an optional param that the user will want
-                            let partName = routeParts[x].substring(1);
-                            params[partName] = hashParts[x];
+                            // this is an optional param that the user will want but only
+                            // if route still matches...
+                            if(thisRouteMatch) {
+                                let partName = routeParts[x].substring(1);
+                                params[partName] = hashParts[x];
+                            }
                         }
                     }
                 }
