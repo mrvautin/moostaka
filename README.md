@@ -2,7 +2,7 @@
 
 [moostaka](https://github.com/mrvautin/moostaka) depends on jQuery and Moustache. They need to be added to your `<head>` tag above moostaka.js
 
-A demo and examples can be found: [http://moostaka.mrvautin.com](http://moostaka.mrvautin.com).
+A demo and examples can be found: [https://moostaka.markmoffat.com/](https://moostaka.markmoffat.com).
 
 #### Example app
 
