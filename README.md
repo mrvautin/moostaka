@@ -1,6 +1,6 @@
 ## Installation
 
-[moostaka](https://github.com/mrvautin/moostaka) depends on jQuery and Moustache. They need to be added to your `<head>` tag above moostaka.js
+[moostaka](https://github.com/mrvautin/moostaka) depends on Moustache. They need to be added to your `<head>` tag above moostaka.js
 
 A demo and examples can be found: [https://moostaka.markmoffat.com](http://moostaka.markmoffat.com).
 
@@ -12,7 +12,6 @@ Example:
 
 ``` html
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='dist/moostaka.js'></script>
 ```
 
